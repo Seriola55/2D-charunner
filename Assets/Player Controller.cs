@@ -95,4 +95,11 @@ public class PlayerController : MonoBehaviour
         rb.linearVelocity = new Vector2( finalSpeed , rb.linearVelocity.y);
         
     }
+    void OnCollisionEnter2D(Collision2D teki)
+{
+    if (teki.gameObject.CompareTag("obstacle"))
+    {
+        Debug.Log("Game Over");
+    }
+}
 }
