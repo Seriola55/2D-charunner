@@ -2,17 +2,18 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     Rigidbody2D rb;
     public bool onGround ;
     public Transform groundcheck;
     public float groundcheckR=0.2f;
-    public LayerMask groundLayer;
+    public LayerMask groundLayer;    //地面判定
 
 
-    public float jumpForce =10f;
-    public float jumpDe = 0.5f;
+    public float jumpForce =10f;   //junmp上
+    public float jumpDe = 0.5f;   //ジャンプ調整
 
 
     public float speed = 0f;    //fuctual speed
@@ -22,10 +23,13 @@ public class PlayerController : MonoBehaviour
 
 
     public float charge=0f;   //溜め
-    public float maxCharge= 18f;   //溜め最大
+    public float maxCharge= 28f;   //溜め最大
     public float speedCharge= 18f;   //溜めの速さ
     public float boothtSpeed= 30f;  //ブースト時の最高速　
     public float boothtDe=0.99f;  //最高速時の減速
+
+
+    public bool isGameOver = false;   //ゲームオーバー
 
     public TMP_Text speedText;
 
@@ -36,6 +40,16 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (isGameOver)
+        {
+            if(Keyboard.current.rKey.wasPressedThisFrame)
+            {
+                SceneManager.LoadScene(0);
+            }
+            return;   //ゲームオーバーならリターン
+        }
+        
+
         if(Keyboard.current.spaceKey.isPressed)    //スペースキー押された時
         {
             speed=speed*de;
@@ -47,21 +61,18 @@ public class PlayerController : MonoBehaviour
         if(Keyboard.current.spaceKey.wasReleasedThisFrame)   //離した時
         {
             float t= charge/maxCharge;
-            speed += t*maxCharge;   //溜め計算
+            speed += t*maxCharge;   //溜めをスピード変換
             charge=0f;
         }
         if(speed>maxspeed)
         {
-            speed *= boothtDe;
+            speed *= boothtDe;   //マックス超えた時の減速
             if(speed<maxspeed)
             {
-                speed= maxspeed;
+                speed= maxspeed;   //マックスの速度
             }
         }
-        else
-        {
-            speed= Mathf.Clamp(speed,0f,maxspeed);
-        }
+        
         if(!Keyboard.current.spaceKey.isPressed && charge==0f )
         {
             if(speed<maxspeed)speed+= ac;   //加速
@@ -96,10 +107,12 @@ public class PlayerController : MonoBehaviour
         
     }
     void OnCollisionEnter2D(Collision2D teki)
-{
-    if (teki.gameObject.CompareTag("obstacle"))
     {
-        Debug.Log("Game Over");
+        if (teki.gameObject.CompareTag("obstacle"))
+        {
+            isGameOver = true;
+            Debug.Log("Game Over");
+        }
     }
-}
+    
 }
