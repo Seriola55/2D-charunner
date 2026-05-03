@@ -28,6 +28,8 @@ public class PlayerController : MonoBehaviour
     public float boothtSpeed= 30f;  //ブースト時の最高速　
     public float boothtDe=0.99f;  //最高速時の減速
 
+    public float edgeHeight = -0.5f;
+
 
     public bool isGameOver = false;   //ゲームオーバー
 
@@ -49,6 +51,11 @@ public class PlayerController : MonoBehaviour
             return;   //ゲームオーバーならリターン
         }
         
+        if(transform.position.y < edgeHeight)
+        {
+            isGameOver = true;    //落下時にゲームオーバー
+        }
+
 
         if(Keyboard.current.spaceKey.isPressed)    //スペースキー押された時
         {
@@ -102,9 +109,15 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if(isGameOver)
+        {
+            speed= 0f;
+            charge= 0f;
+            rb.linearVelocity =Vector2.zero;   //ゲームオーバー時に速度停止
+            return;
+        }
         float finalSpeed = speed;
-        rb.linearVelocity = new Vector2( finalSpeed , rb.linearVelocity.y);
-        
+        rb.linearVelocity = new Vector2( finalSpeed , rb.linearVelocity.y); 
     }
     void OnCollisionEnter2D(Collision2D teki)
     {
