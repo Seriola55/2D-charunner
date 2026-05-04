@@ -5,7 +5,7 @@ public class Camera :MonoBehaviour
     public Transform target;
     public float smoothCa = 5f;
 
-    void Update()
+    void LateUpdate()
     {
         Vector3 targetPos = new Vector3(
             target.position.x,
