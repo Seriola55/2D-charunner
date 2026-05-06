@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
 
     public float speed = 0f;    //fuctual speed
     public float maxspeed = 20f;   //maxspped
+    public float minimumspeed =-10f;
     public float ac = 0.01f;   //加速
     public float de = 0.98f;   //減速
 
@@ -28,7 +29,11 @@ public class PlayerController : MonoBehaviour
     public float boothtSpeed= 30f;  //ブースト時の最高速　
     public float boothtDe=0.99f;  //最高速時の減速
 
-    public float edgeHeight = -0.5f;
+    public float edgeHeight = -0.5f;   //落下の高さ
+
+    public float bounce = -0.5f;    //跳ね返り係数
+    public float wallSpeed = 1f;   //Wallに衝突時の速度
+    bool touchWall = false;
 
 
     public bool isGameOver = false;   //ゲームオーバー
@@ -46,12 +51,12 @@ public class PlayerController : MonoBehaviour
         {
             if(Keyboard.current.rKey.wasPressedThisFrame)
             {
-                SceneManager.LoadScene(0);
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
             return;   //ゲームオーバーならリターン
         }
         
-        if(transform.position.y < edgeHeight)
+        if(transform.position.y < edgeHeight)   
         {
             isGameOver = true;    //落下時にゲームオーバー
         }
@@ -80,12 +85,12 @@ public class PlayerController : MonoBehaviour
             }
         }
         
-        if(!Keyboard.current.spaceKey.isPressed && charge==0f )
+        if(!Keyboard.current.spaceKey.isPressed && charge==0f && !touchWall)
         {
             if(speed<maxspeed)speed+= ac;   //加速
         }
 
-        speed= Mathf.Clamp(speed,0f,boothtSpeed);   //速度の最小値、最大値
+        speed= Mathf.Clamp(speed,minimumspeed,boothtSpeed);   //速度の最小値、最大値
 
         onGround = Physics2D.OverlapCircle(
             (Vector2)groundcheck.position,
@@ -119,13 +124,49 @@ public class PlayerController : MonoBehaviour
         float finalSpeed = speed;
         rb.linearVelocity = new Vector2( finalSpeed , rb.linearVelocity.y); 
     }
-    void OnCollisionEnter2D(Collision2D teki)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        if (teki.gameObject.CompareTag("obstacle"))
+        if (collision.gameObject.CompareTag("obstacle"))
         {
             isGameOver = true;
             Debug.Log("Game Over");
         }
+
+        if (collision.gameObject.CompareTag("Wall"))   //Wall衝突時
+        {
+            foreach(ContactPoint2D contact in collision.contacts)
+            {
+                if(Mathf.Abs(contact.normal.x)> 0.5f)   //衝突時の横方向を取り出す
+                {
+                    if (speed > wallSpeed)
+                    {
+                        speed *= bounce;    //跳ね返り
+                    }
+                    else
+                    {
+                        speed=0f;
+                    }
+                    break; 
+                }
+            }
+        }
     }
-    
+    void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Wall"))   //壁に触れて2f目以降
+        {
+            touchWall= true;
+            if (speed>0f)
+            {
+                speed=0f;
+            }
+        }
+    }
+     void OnCollisionExit2D(Collision2D collision)    //壁から離れた時
+    {
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            touchWall = false;
+        }
+    }
 }
