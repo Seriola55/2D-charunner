@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
 
 
     public bool isGameOver = false;   //ゲームオーバー
+    public bool isClear = false;    //クリア
 
     public TMP_Text speedText;
 
@@ -47,7 +48,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (isGameOver)
+        if (isGameOver || isClear)
         {
             if(Keyboard.current.rKey.wasPressedThisFrame)
             {
@@ -114,7 +115,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(isGameOver)
+        if(isGameOver  || isClear)
         {
             speed= 0f;
             charge= 0f;

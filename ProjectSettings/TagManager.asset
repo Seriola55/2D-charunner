@@ -6,6 +6,7 @@ TagManager:
   tags:
   - obstacle
   - Wall
+  - other
   layers:
   - Default
   - TransparentFX
