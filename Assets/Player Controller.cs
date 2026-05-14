@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
     public bool isClear = false;    //クリア
 
     public TMP_Text speedText;
+    public GameObject gameOverPanel;
 
     void Start()
     {
@@ -120,6 +121,13 @@ public class PlayerController : MonoBehaviour
             speed= 0f;
             charge= 0f;
             rb.linearVelocity =Vector2.zero;   //ゲームオーバー時に速度停止
+
+            if (isGameOver && gameOverPanel != null)
+            {
+                gameOverPanel.SetActive(true);
+            }
+
+
             return;
         }
         float finalSpeed = speed;
@@ -133,34 +141,29 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Game Over");
         }
 
-        if (collision.gameObject.CompareTag("Wall"))   //Wall衝突時
+        if (collision.gameObject.CompareTag("Wall") && IsWallHit(collision))   //Wall衝突時
         {
-            foreach(ContactPoint2D contact in collision.contacts)
+            if (speed > wallSpeed)
             {
-                if(Mathf.Abs(contact.normal.x)> 0.5f)   //衝突時の横方向を取り出す
-                {
-                    if (speed > wallSpeed)
-                    {
-                        speed *= bounce;    //跳ね返り
-                    }
-                    else
-                    {
-                        speed=0f;
-                    }
-                    break; 
-                }
+                speed *= bounce;    //跳ね返り
             }
-        }
-    }
-    void OnCollisionStay2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Wall"))   //壁に触れて2f目以降
-        {
-            touchWall= true;
-            if (speed>0f)
+            else
             {
                 speed=0f;
             }
+        }
+    }
+
+    void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Wall") && IsWallHit(collision))   //壁に触れて2f目以降
+        {
+            touchWall = true;
+            if(speed > 0f)
+            {
+                speed = 0f;
+            }
+            
         }
     }
      void OnCollisionExit2D(Collision2D collision)    //壁から離れた時
@@ -169,5 +172,16 @@ public class PlayerController : MonoBehaviour
         {
             touchWall = false;
         }
+    }
+    
+    bool IsWallHit(Collision2D collision)    //壁にぶつかったとするのはどういう時か
+    {
+        foreach(ContactPoint2D contact in collision.contacts)
+        {
+            if( Mathf.Abs(contact.normal.x)> 0.5f )
+            return true;
+        }
+
+        return false;
     }
 }
