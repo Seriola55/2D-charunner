@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
         {
             if(Keyboard.current.rKey.wasPressedThisFrame)
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                RetryGame();
             }
             return;   //ゲームオーバーならリターン
         }
@@ -211,5 +211,10 @@ public class PlayerController : MonoBehaviour
         isPause =false;
         pausePanel.SetActive(false);
         Time.timeScale = 1f;
+    }
+    public void RetryGame()   //リトライ
+    {
+        Time.timeScale=1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
