@@ -38,9 +38,12 @@ public class PlayerController : MonoBehaviour
 
     public bool isGameOver = false;   //ゲームオーバー
     public bool isClear = false;    //クリア
+    public bool isPause = false;   //ポーズ中
 
     public TMP_Text speedText;
     public GameObject gameOverPanel;
+    public GameObject pausePanel;
+
 
     void Start()
     {
@@ -56,6 +59,25 @@ public class PlayerController : MonoBehaviour
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
             return;   //ゲームオーバーならリターン
+        }
+
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)   //ポーズ
+        {
+            if (isPause)
+            {
+                ResumeGame();
+            }
+            else
+            {
+                isPause =true;
+                pausePanel.SetActive(true);
+                Time.timeScale = 0f;
+                return;
+            }
+        }
+        if (isPause)
+        {
+            return;
         }
         
         if(transform.position.y < edgeHeight)   
@@ -183,5 +205,11 @@ public class PlayerController : MonoBehaviour
         }
 
         return false;
+    }
+    public void ResumeGame()    //ゲーム再開
+    {
+        isPause =false;
+        pausePanel.SetActive(false);
+        Time.timeScale = 1f;
     }
 }
