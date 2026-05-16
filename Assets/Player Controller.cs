@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     Rigidbody2D rb;
@@ -43,6 +44,7 @@ public class PlayerController : MonoBehaviour
     public TMP_Text speedText;
     public GameObject gameOverPanel;
     public GameObject pausePanel;
+    public Slider chargeSlider;
 
 
     void Start()
@@ -134,6 +136,7 @@ public class PlayerController : MonoBehaviour
 
        
         speedText.text= (speed).ToString("F2");   //速度表示
+        chargeSlider.value= charge/maxCharge;    //チャージスライダー
     }
 
     void FixedUpdate()
