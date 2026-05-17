@@ -36,15 +36,17 @@ public class PlayerController : MonoBehaviour
     public float wallSpeed = 1f;   //Wallに衝突時の速度
     bool touchWall = false;
 
+    public float clearTime = 0f;
+
 
     public bool isGameOver = false;   //ゲームオーバー
     public bool isClear = false;    //クリア
     public bool isPause = false;   //ポーズ中
 
-    public TMP_Text speedText;
-    public GameObject gameOverPanel;
-    public GameObject pausePanel;
-    public Slider chargeSlider;
+    public TMP_Text speedText;     //スピードのテキスト
+    public GameObject gameOverPanel;   //ゲームオーバーパネル
+    public GameObject pausePanel;     //ポーズパネル
+    public Slider chargeSlider;      //チャージスライダー
 
 
     void Start()
@@ -81,6 +83,8 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
+
+        clearTime += Time.deltaTime;
         
         if(transform.position.y < edgeHeight)   
         {
