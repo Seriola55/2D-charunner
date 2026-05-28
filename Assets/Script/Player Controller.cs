@@ -9,7 +9,8 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb;
     public bool onGround ;
     public Transform groundcheck;
-    public float groundcheckR=0.2f;
+
+    public Vector2 groundcheckSize= new Vector2(1f,0.1f);   //グラウンドチェック
     public LayerMask groundLayer;    //地面判定
 
 
@@ -36,7 +37,7 @@ public class PlayerController : MonoBehaviour
     public float wallSpeed = 1f;   //Wallに衝突時の速度
     bool touchWall = false;
 
-    public float clearTime = 0f;
+    public float clearTime = 0f;   //クリアタイム
 
 
     public bool isGameOver = false;   //ゲームオーバー
@@ -122,9 +123,10 @@ public class PlayerController : MonoBehaviour
 
         speed= Mathf.Clamp(speed,minimumspeed,boothtSpeed);   //速度の最小値、最大値
 
-        onGround = Physics2D.OverlapCircle(
+        onGround = Physics2D.OverlapBox(
             (Vector2)groundcheck.position,
-            groundcheckR,
+            groundcheckSize,
+            0f,
             groundLayer)!= null;    //地面判定
 
 
@@ -224,4 +226,15 @@ public class PlayerController : MonoBehaviour
         Time.timeScale=1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+    private void OnDrawGizmosSelected()    //グラウンドチェック可視化
+{
+    if (groundcheck == null) return;
+
+    Gizmos.color = Color.red;
+
+    Gizmos.DrawWireCube(
+        groundcheck.position,
+        groundcheckSize
+    );
+}
 }
