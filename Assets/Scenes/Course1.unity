@@ -3450,6 +3450,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Camera
   target: {fileID: 865276710}
   smoothCa: 5
+  shift_x: 3
 --- !u!1 &525942536
 GameObject:
   m_ObjectHideFlags: 0
@@ -5491,7 +5492,7 @@ MonoBehaviour:
   maxCharge: 28
   speedCharge: 18
   boothtSpeed: 30
-  boothtDe: 0.999
+  boothtDe: 0.9995
   edgeHeight: -5
   bounce: -0.5
   wallSpeed: 2
@@ -13800,7 +13801,7 @@ Transform:
   m_GameObject: {fileID: 2044237273}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.9700012, y: -0.21, z: 0}
+  m_LocalPosition: {x: 0.9700012, y: -0.22, z: 0}
   m_LocalScale: {x: 5, y: 0.099999994, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

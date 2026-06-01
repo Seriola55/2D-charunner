@@ -4,11 +4,12 @@ public class CameraFollow :MonoBehaviour
 {
     public Transform target;
     public float smoothCa = 5f;
+    public float shift_x = 2f;
 
     void LateUpdate()
     {
         Vector3 targetPos = new Vector3(
-            target.position.x,
+            target.position.x + shift_x,
             transform.position.y,
             transform.position.z
         );
