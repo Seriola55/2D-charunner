@@ -7,23 +7,27 @@ public class obstaclemove : MonoBehaviour
         None,
         Straight,
         Wave,
-        Trigger
+        Trigger,
+        Enermy
     }
     public Movetype moveType = Movetype.None;
 
-    public float speed = 5f;
+    public float speed = 5f;   //横の速さ
 
-    public float waveSpeed= 2f;
-    public float height =5f;
+    public float waveSpeed= 2f;   //waveの速さ
+    public float height =5f;  //waveの高さ
 
     public Transform player;
     bool active = false;
-    public float triggerDis= 10f;
+    public float triggerDis= 10f;  //トリガーの距離
     
+    public float breakspeed =20f;  //倒せる速度
     Vector3 startPos;
+    Rigidbody2D rb;
 
     void Start()
     {
+        rb =GetComponent<Rigidbody2D>();
         startPos = transform.position;
     }
 
@@ -41,6 +45,9 @@ public class obstaclemove : MonoBehaviour
             case Movetype.Trigger:
                 MoveTrigger();
                 break;
+            case Movetype.Enermy:
+                MoveEnermy();
+                break;    
         }
     }
 
@@ -71,5 +78,24 @@ public class obstaclemove : MonoBehaviour
             transform.position += Vector3.left * speed * Time.deltaTime;
         }
     }
-
+    void MoveEnermy()
+    {
+        rb.linearVelocity = new Vector2(-speed,rb.linearVelocity.y);
+    }
+    void OnCollisionEnter2D(Collision2D collision)
+        {
+            if(moveType != Movetype.Enermy)return;
+            if (collision.gameObject.CompareTag("Player"))
+            {
+                PlayerController player = collision.gameObject.GetComponent<PlayerController>();
+                if(player !=null && player.speed > breakspeed)
+                {
+                    Destroy(gameObject);
+                }
+                else if (player != null)
+                {
+                    player.isGameOver=true;
+                }
+            }
+        }
 }
