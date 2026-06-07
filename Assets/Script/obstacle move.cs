@@ -13,6 +13,7 @@ public class obstaclemove : MonoBehaviour
     public Movetype moveType = Movetype.None;
 
     public float speed = 5f;   //横の速さ
+    public float direction = -1;  //方向転換
 
     public float waveSpeed= 2f;   //waveの速さ
     public float height =5f;  //waveの高さ
@@ -75,12 +76,12 @@ public class obstaclemove : MonoBehaviour
         }
         if(active)
         {
-            transform.position += Vector3.left * speed * Time.deltaTime;
+            transform.position += Vector3.left * speed * Time.deltaTime;  //左に動くスピード
         }
     }
     void MoveEnermy()
     {
-        rb.linearVelocity = new Vector2(-speed,rb.linearVelocity.y);
+        rb.linearVelocity = new Vector2(speed*direction,rb.linearVelocity.y);  //敵のスピード
     }
     void OnCollisionEnter2D(Collision2D collision)
         {
@@ -88,14 +89,25 @@ public class obstaclemove : MonoBehaviour
             if (collision.gameObject.CompareTag("Player"))
             {
                 PlayerController player = collision.gameObject.GetComponent<PlayerController>();
+                if(player !=null && player.isClear)return;  //クリア状態なら発動しない
                 if(player !=null && player.speed > breakspeed)
                 {
-                    Destroy(gameObject);
+                    Destroy(gameObject);   //速度高いと倒せる
                 }
                 else if (player != null)
                 {
-                    player.isGameOver=true;
+                    player.isGameOver=true;   //速度普通だと倒せない
                 }
+                return;
             }
+            
+            if(collision.gameObject.CompareTag("Wall")    //壁
+            || collision.gameObject.CompareTag("obstacle")   //obstacle
+            || collision.gameObject.GetComponent<BreakWall>() != null     //壊れる壁
+            || collision.gameObject.GetComponent<obstaclemove>() != null)     //enermy用
+            {
+                direction *= -1;   //方向転換
+            }
+            
         }
 }

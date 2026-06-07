@@ -1722,6 +1722,7 @@ MonoBehaviour:
   height: 5
   player: {fileID: 0}
   triggerDis: 10
+  breakspeed: 20
 --- !u!61 &101533835
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2001,9 +2002,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1079383163}
         m_TargetAssemblyTypeName: StartMenu, Assembly-CSharp
-        m_MethodName: StartGame2
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4255,6 +4256,7 @@ MonoBehaviour:
   height: 4
   player: {fileID: 0}
   triggerDis: 10
+  breakspeed: 20
 --- !u!61 &348598595
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6176,6 +6178,7 @@ MonoBehaviour:
   height: 5
   player: {fileID: 0}
   triggerDis: 10
+  breakspeed: 20
 --- !u!61 &498046602
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7371,6 +7374,7 @@ MonoBehaviour:
   height: 5
   player: {fileID: 0}
   triggerDis: 10
+  breakspeed: 20
 --- !u!61 &627439075
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7752,6 +7756,7 @@ MonoBehaviour:
   height: 5
   player: {fileID: 865276710}
   triggerDis: 25
+  breakspeed: 20
 --- !u!61 &655696831
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8108,6 +8113,7 @@ MonoBehaviour:
   height: 5
   player: {fileID: 865276710}
   triggerDis: 25
+  breakspeed: 20
 --- !u!61 &675973150
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9085,7 +9091,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 865276706}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: ResumeGame
         m_Mode: 1
@@ -10449,6 +10455,7 @@ MonoBehaviour:
   height: 4
   player: {fileID: 0}
   triggerDis: 10
+  breakspeed: 20
 --- !u!61 &878316051
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10959,6 +10966,7 @@ MonoBehaviour:
   height: 5
   player: {fileID: 0}
   triggerDis: 10
+  breakspeed: 20
 --- !u!61 &943761146
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11792,6 +11800,7 @@ MonoBehaviour:
   height: 5
   player: {fileID: 0}
   triggerDis: 10
+  breakspeed: 20
 --- !u!61 &1068045442
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12364,6 +12373,7 @@ MonoBehaviour:
   height: 5
   player: {fileID: 0}
   triggerDis: 10
+  breakspeed: 20
 --- !u!61 &1085145723
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12613,6 +12623,7 @@ MonoBehaviour:
   height: 4
   player: {fileID: 0}
   triggerDis: 10
+  breakspeed: 20
 --- !u!61 &1093298146
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14610,6 +14621,7 @@ MonoBehaviour:
   height: 5
   player: {fileID: 0}
   triggerDis: 10
+  breakspeed: 20
 --- !u!61 &1206505874
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -15013,7 +15025,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 865276706}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: RetryGame
         m_Mode: 1
@@ -17089,6 +17101,7 @@ MonoBehaviour:
   height: 5
   player: {fileID: 0}
   triggerDis: 10
+  breakspeed: 20
 --- !u!61 &1423243818
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -17368,7 +17381,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 865276706}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: RetryGame
         m_Mode: 1
@@ -19433,6 +19446,7 @@ MonoBehaviour:
   height: 5
   player: {fileID: 0}
   triggerDis: 10
+  breakspeed: 20
 --- !u!61 &1640581129
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -20049,6 +20063,7 @@ MonoBehaviour:
   height: 7
   player: {fileID: 0}
   triggerDis: 10
+  breakspeed: 20
 --- !u!4 &1764361266 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8515226930548698394, guid: 14fc9e40c7e48476684da200adba3116, type: 3}
@@ -20150,6 +20165,7 @@ MonoBehaviour:
   height: 12
   player: {fileID: 0}
   triggerDis: 10
+  breakspeed: 20
 --- !u!61 &1770369357
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -21887,6 +21903,7 @@ MonoBehaviour:
   height: 5
   player: {fileID: 0}
   triggerDis: 10
+  breakspeed: 20
 --- !u!61 &2008646638
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -22422,6 +22439,7 @@ MonoBehaviour:
   height: 5
   player: {fileID: 0}
   triggerDis: 10
+  breakspeed: 20
 --- !u!1 &2042942765
 GameObject:
   m_ObjectHideFlags: 0
@@ -22596,7 +22614,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1079383164}
         m_TargetAssemblyTypeName: StartMenu, Assembly-CSharp
         m_MethodName: GoToMenu
         m_Mode: 1
@@ -23471,6 +23489,7 @@ MonoBehaviour:
   height: 5
   player: {fileID: 0}
   triggerDis: 10
+  breakspeed: 20
 --- !u!61 &2120796353
 BoxCollider2D:
   m_ObjectHideFlags: 0
