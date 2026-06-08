@@ -81,7 +81,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_MaskInteraction: 0
   m_Sprite: {fileID: 404897883756998166, guid: 249a3d35708e344bc841c5489f93ca1c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -107,10 +107,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::obstaclemove
   moveType: 0
   speed: 5
+  direction: -1
   waveSpeed: 2
   height: 5
   player: {fileID: 0}
   triggerDis: 10
+  breakspeed: 20
 --- !u!60 &5233333519256935097
 PolygonCollider2D:
   m_ObjectHideFlags: 0

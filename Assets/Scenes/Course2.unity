@@ -1718,8 +1718,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::obstaclemove
   moveType: 0
   speed: 5
+  direction: -1
   waveSpeed: 2
   height: 5
+  waveOffset: 0
   player: {fileID: 0}
   triggerDis: 10
   breakspeed: 20
@@ -4252,8 +4254,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::obstaclemove
   moveType: 2
   speed: 5
+  direction: -1
   waveSpeed: 0.97
   height: 4
+  waveOffset: 0
   player: {fileID: 0}
   triggerDis: 10
   breakspeed: 20
@@ -6174,8 +6178,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::obstaclemove
   moveType: 0
   speed: 5
+  direction: -1
   waveSpeed: 2
   height: 5
+  waveOffset: 0
   player: {fileID: 0}
   triggerDis: 10
   breakspeed: 20
@@ -6554,7 +6560,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 10, z: -10}
+  m_LocalPosition: {x: 0, y: 5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7370,8 +7376,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::obstaclemove
   moveType: 0
   speed: 5
+  direction: -1
   waveSpeed: 2
   height: 5
+  waveOffset: 0
   player: {fileID: 0}
   triggerDis: 10
   breakspeed: 20
@@ -7752,8 +7760,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::obstaclemove
   moveType: 3
   speed: 5
+  direction: -1
   waveSpeed: 2
   height: 5
+  waveOffset: 0
   player: {fileID: 865276710}
   triggerDis: 25
   breakspeed: 20
@@ -8109,8 +8119,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::obstaclemove
   moveType: 3
   speed: 5
+  direction: -1
   waveSpeed: 2
   height: 5
+  waveOffset: 0
   player: {fileID: 865276710}
   triggerDis: 25
   breakspeed: 20
@@ -10451,8 +10463,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::obstaclemove
   moveType: 2
   speed: 5
+  direction: -1
   waveSpeed: 4
   height: 4
+  waveOffset: 0
   player: {fileID: 0}
   triggerDis: 10
   breakspeed: 20
@@ -10962,8 +10976,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::obstaclemove
   moveType: 0
   speed: 5
+  direction: -1
   waveSpeed: 2
   height: 5
+  waveOffset: 0
   player: {fileID: 0}
   triggerDis: 10
   breakspeed: 20
@@ -11796,8 +11812,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::obstaclemove
   moveType: 1
   speed: 5
+  direction: -1
   waveSpeed: 2
   height: 5
+  waveOffset: 0
   player: {fileID: 0}
   triggerDis: 10
   breakspeed: 20
@@ -12369,8 +12387,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::obstaclemove
   moveType: 2
   speed: 5
+  direction: -1
   waveSpeed: 4
   height: 5
+  waveOffset: 0
   player: {fileID: 0}
   triggerDis: 10
   breakspeed: 20
@@ -12619,8 +12639,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::obstaclemove
   moveType: 2
   speed: 5
+  direction: -1
   waveSpeed: 4
   height: 4
+  waveOffset: 0
   player: {fileID: 0}
   triggerDis: 10
   breakspeed: 20
@@ -14617,8 +14639,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::obstaclemove
   moveType: 0
   speed: 5
+  direction: -1
   waveSpeed: 2
   height: 5
+  waveOffset: 0
   player: {fileID: 0}
   triggerDis: 10
   breakspeed: 20
@@ -17097,8 +17121,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::obstaclemove
   moveType: 0
   speed: 5
+  direction: -1
   waveSpeed: 2
   height: 5
+  waveOffset: 0
   player: {fileID: 0}
   triggerDis: 10
   breakspeed: 20
@@ -19442,8 +19468,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::obstaclemove
   moveType: 0
   speed: 5
+  direction: -1
   waveSpeed: 2
   height: 5
+  waveOffset: 0
   player: {fileID: 0}
   triggerDis: 10
   breakspeed: 20
@@ -20059,8 +20087,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::obstaclemove
   moveType: 2
   speed: 5
+  direction: -1
   waveSpeed: 7
   height: 7
+  waveOffset: 0
   player: {fileID: 0}
   triggerDis: 10
   breakspeed: 20
@@ -20161,8 +20191,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::obstaclemove
   moveType: 2
   speed: 7.5
+  direction: -1
   waveSpeed: 8
   height: 12
+  waveOffset: 0
   player: {fileID: 0}
   triggerDis: 10
   breakspeed: 20
@@ -21899,8 +21931,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::obstaclemove
   moveType: 0
   speed: 5
+  direction: -1
   waveSpeed: 2
   height: 5
+  waveOffset: 0
   player: {fileID: 0}
   triggerDis: 10
   breakspeed: 20
@@ -22435,8 +22469,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::obstaclemove
   moveType: 0
   speed: 5
+  direction: -1
   waveSpeed: 2
   height: 5
+  waveOffset: 0
   player: {fileID: 0}
   triggerDis: 10
   breakspeed: 20
@@ -23485,8 +23521,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::obstaclemove
   moveType: 0
   speed: 5
+  direction: -1
   waveSpeed: 2
   height: 5
+  waveOffset: 0
   player: {fileID: 0}
   triggerDis: 10
   breakspeed: 20

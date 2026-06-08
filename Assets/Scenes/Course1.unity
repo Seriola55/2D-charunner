@@ -2435,7 +2435,7 @@ Transform:
   m_GameObject: {fileID: 372097548}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 184.9211, y: 10.5, z: 0}
+  m_LocalPosition: {x: 184.3, y: 3.2, z: 0}
   m_LocalScale: {x: 5, y: 8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3430,7 +3430,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 10, z: -10}
+  m_LocalPosition: {x: 0, y: 5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4014,8 +4014,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::obstaclemove
   moveType: 3
   speed: 5
+  direction: -1
   waveSpeed: 2
   height: 5
+  waveOffset: 0
   player: {fileID: 865276710}
   triggerDis: 15
   breakspeed: 20
@@ -4166,7 +4168,7 @@ Transform:
   m_GameObject: {fileID: 674219841}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 195.7, y: 7.7, z: 0}
+  m_LocalPosition: {x: 194.2, y: 1.9, z: 0}
   m_LocalScale: {x: 5, y: 8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6393,8 +6395,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::obstaclemove
   moveType: 0
   speed: 5
+  direction: -1
   waveSpeed: 2
   height: 5
+  waveOffset: 0
   player: {fileID: 865276710}
   triggerDis: 10
   breakspeed: 20
@@ -7617,7 +7621,7 @@ Transform:
   m_GameObject: {fileID: 1143724242}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 92.6, y: 10.8, z: 0}
+  m_LocalPosition: {x: 92.6, y: 2.9, z: 0}
   m_LocalScale: {x: 3, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7708,7 +7712,7 @@ Transform:
   m_GameObject: {fileID: 1158040995}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -134.4, y: 15.1, z: 0}
+  m_LocalPosition: {x: -134.4, y: 9.8, z: 0}
   m_LocalScale: {x: 15, y: 15, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11230,7 +11234,7 @@ Transform:
   m_GameObject: {fileID: 1601299415}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -9.6, y: 11.3, z: 0}
+  m_LocalPosition: {x: -9.6, y: 4.6, z: 0}
   m_LocalScale: {x: 6, y: 19, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12185,8 +12189,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::obstaclemove
   moveType: 2
   speed: 5
+  direction: -1
   waveSpeed: 4
   height: 5
+  waveOffset: 0
   player: {fileID: 865276710}
   triggerDis: 10
   breakspeed: 20
@@ -13687,8 +13693,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::obstaclemove
   moveType: 0
   speed: 5
+  direction: -1
   waveSpeed: 2
   height: 5
+  waveOffset: 0
   player: {fileID: 865276710}
   triggerDis: 10
   breakspeed: 20

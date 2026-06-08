@@ -245,7 +245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   onGround: 0
   groundcheck: {fileID: 3527271779061271286}
-  groundcheckSize: {x: 1.4, y: 0.1}
+  groundcheckSize: {x: 1.4, y: 0.2}
   groundLayer:
     serializedVersion: 2
     m_Bits: 8

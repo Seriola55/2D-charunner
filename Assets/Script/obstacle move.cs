@@ -17,6 +17,7 @@ public class obstaclemove : MonoBehaviour
 
     public float waveSpeed= 2f;   //waveの速さ
     public float height =5f;  //waveの高さ
+    public float waveOffset = 0f;   //waveの時間のずれ
 
     public Transform player;
     bool active = false;
@@ -59,7 +60,7 @@ public class obstaclemove : MonoBehaviour
 
     void MoveWave()  //上下
     {
-        float y =Mathf.Sin(Time.time * waveSpeed)* height;   
+        float y =Mathf.Sin(Time.time * waveSpeed+waveOffset)* height;   
         transform.position =new Vector3(
             transform.position.x,
             startPos.y+y,
