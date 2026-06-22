@@ -148,7 +148,7 @@ MonoBehaviour:
   height: 5
   waveOffset: 0
   player: {fileID: 0}
-  triggerDis: 35
+  triggerDis: 50
   breakspeed: 20
 --- !u!1 &7373685724822924974
 GameObject:
@@ -298,7 +298,7 @@ MonoBehaviour:
   height: 5
   waveOffset: 0
   player: {fileID: 0}
-  triggerDis: 35
+  triggerDis: 50
   breakspeed: 20
 --- !u!1 &8161451911067902268
 GameObject:

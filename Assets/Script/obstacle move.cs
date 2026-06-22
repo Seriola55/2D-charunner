@@ -31,6 +31,14 @@ public class obstaclemove : MonoBehaviour
     {
         rb =GetComponent<Rigidbody2D>();
         startPos = transform.position;
+        if (player == null)
+        {
+            GameObject p = GameObject.FindWithTag("Player");
+            if(p != null)
+            {
+                player = p.transform;
+            }
+        }
     }
 
     void Update()
