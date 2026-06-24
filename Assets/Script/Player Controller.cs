@@ -16,9 +16,10 @@ public class PlayerController : MonoBehaviour
 
     public float jumpForce =10f;   //junmp上
     public float jumpDe = 0.5f;   //ジャンプ調整
+    public float fallAc = 2f;   //落下時早く落ちる
 
 
-    public float speed = 0f;    //fuctual speed
+    public float speed = 0f;    //実際の speed
     public float maxspeed = 20f;   //maxspped
     public float minimumspeed =-10f;
     public float ac = 0.01f;   //加速
@@ -137,9 +138,13 @@ public class PlayerController : MonoBehaviour
 
         if(Keyboard.current.upArrowKey.wasReleasedThisFrame && rb.linearVelocity.y >0)
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * jumpDe);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * jumpDe);   //ジャンプ調整
         }
 
+        if(!onGround && rb.linearVelocity.y < 0)
+        {
+            rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (fallAc - 1f) * Time.deltaTime;
+        }    //落下時早く落ちる
        
         speedText.text= (speed).ToString("F2");   //速度表示
         chargeSlider.value= charge/maxCharge;    //チャージスライダー
