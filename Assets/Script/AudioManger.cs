@@ -4,6 +4,7 @@ public class AudioManager : MonoBehaviour
 {
     public AudioSource bgmSource;
     public AudioSource seSource;
+    public AudioSource loopSource;
 
     public AudioClip bgmClip;
 
@@ -13,6 +14,10 @@ public class AudioManager : MonoBehaviour
     public AudioClip enemyDefeatSE;
     public AudioClip gameOverSE;
     public AudioClip clearSE;
+    public AudioClip buttonSE;
+    public AudioClip inchargeSE;
+
+    public float chargeRate = 0.8f;
 
     void Start()
     {
@@ -21,6 +26,7 @@ public class AudioManager : MonoBehaviour
 
         bgmSource.volume = bgmVolume;
         seSource.volume = seVolume;
+        loopSource.volume =seVolume*chargeRate;
 
         if(bgmClip != null)
         {
@@ -60,11 +66,36 @@ public class AudioManager : MonoBehaviour
         PlaySE(clearSE);
     }
 
+    public void PlayButton()
+    {
+        PlaySE(buttonSE);
+    }
+
     void PlaySE(AudioClip clip)
     {
         if(clip == null) return;
         seSource.PlayOneShot(clip);
     }
+
+     public void StartChargeLoop()
+    {
+        if(inchargeSE == null) return;
+        if(loopSource.isPlaying) return;
+
+        loopSource.clip = inchargeSE;
+        loopSource.loop = true;
+        loopSource.Play();
+    }
+
+    public void StopChargeLoop()
+    {
+        if(!loopSource.isPlaying) return;
+
+        loopSource.Stop();
+        loopSource.loop = false;
+        loopSource.clip = null;
+    }
+
 
     public void SetBGMVolume(float volume)
     {
@@ -76,6 +107,7 @@ public class AudioManager : MonoBehaviour
     public void SetSEVolume(float volume)
     {
         seSource.volume = volume;
+        loopSource.volume= volume * chargeRate;
         PlayerPrefs.SetFloat("SEVolume", volume);
         PlayerPrefs.Save();
     }

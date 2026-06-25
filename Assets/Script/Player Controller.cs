@@ -50,6 +50,9 @@ public class PlayerController : MonoBehaviour
     public GameObject pausePanel;     //ポーズパネル
     public Slider chargeSlider;      //チャージスライダー
 
+    public AudioManager audioManager;
+    bool playedGameOverSE =false;
+
 
     void Start()
     {
@@ -60,6 +63,10 @@ public class PlayerController : MonoBehaviour
     {
         if (isGameOver || isClear)
         {
+            if(audioManager != null)
+            {
+                audioManager.StopChargeLoop();
+            }
             if(Keyboard.current.rKey.wasPressedThisFrame)
             {
                 RetryGame();
@@ -69,6 +76,10 @@ public class PlayerController : MonoBehaviour
 
         if (Keyboard.current.escapeKey.wasPressedThisFrame)   //ポーズ
         {
+            if(audioManager != null)
+            {
+                audioManager.StopChargeLoop();
+            }
             if (isPause)
             {
                 ResumeGame();
@@ -100,13 +111,28 @@ public class PlayerController : MonoBehaviour
             if(speed<0.01f) speed=0f;
             charge+=speedCharge*Time.deltaTime;   //溜め計算
             charge=Mathf.Clamp(charge,0f,maxCharge);
+
+            if(audioManager != null)
+            {
+                audioManager.StartChargeLoop();
+            }
         }
         
         if(Keyboard.current.spaceKey.wasReleasedThisFrame)   //離した時
         {
+            if(audioManager != null)
+            {
+                audioManager.StopChargeLoop();
+            }
+
             float t= charge/maxCharge;
             speed += t*maxCharge;   //溜めをスピード変換
             charge=0f;
+            
+            if(audioManager != null)
+            {
+                audioManager.PlayChargeRelease();
+            }
         }
         if(speed>maxspeed)
         {
@@ -134,6 +160,10 @@ public class PlayerController : MonoBehaviour
         if (Keyboard.current.upArrowKey.wasPressedThisFrame && onGround)  //ジャンプキー押してかつ地面にいた場合
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);   //ジャンプ
+            if(audioManager != null)
+            {
+                audioManager.PlayJump();
+            }
         }
 
         if(Keyboard.current.upArrowKey.wasReleasedThisFrame && rb.linearVelocity.y >0)
@@ -156,11 +186,16 @@ public class PlayerController : MonoBehaviour
         {
             speed= 0f;
             charge= 0f;
-            rb.linearVelocity =Vector2.zero;   //ゲームオーバー時に速度停止
+            rb.linearVelocity =Vector2.zero;   //ゲームオーバーかクリア時に速度停止
 
             if (isGameOver && gameOverPanel != null)
             {
                 gameOverPanel.SetActive(true);
+                if(!playedGameOverSE && audioManager != null)
+                {
+                    audioManager.PlayGameOver();
+                    playedGameOverSE =true;
+                }
             }
 
 

@@ -24,6 +24,9 @@ public class obstaclemove : MonoBehaviour
     public float triggerDis= 10f;  //トリガーの距離
     
     public float breakspeed =20f;  //倒せる速度
+
+    public AudioManager audioManager;
+
     Vector3 startPos;
     Rigidbody2D rb;
 
@@ -101,6 +104,10 @@ public class obstaclemove : MonoBehaviour
                 if(player !=null && player.isClear)return;  //クリア状態なら発動しない
                 if(player !=null && player.speed > breakspeed)
                 {
+                    if(audioManager != null)
+                {
+                    audioManager.PlayEnemyDefeat();
+                }
                     Destroy(gameObject);   //速度高いと倒せる
                 }
                 else if (player != null)
