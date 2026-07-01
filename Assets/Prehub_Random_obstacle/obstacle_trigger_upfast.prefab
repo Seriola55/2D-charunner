@@ -142,15 +142,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::obstaclemove
   moveType: 3
-  speed: 9
+  speed: 10
   direction: -1
   waveSpeed: 2
   height: 5
   waveOffset: 0
   player: {fileID: 0}
-  triggerDis: 50
+  triggerDis: 65
   breakspeed: 20
   audioManager: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1 &7373685724822924974
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,15 +294,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::obstaclemove
   moveType: 3
-  speed: 9
+  speed: 10
   direction: -1
   waveSpeed: 2
   height: 5
   waveOffset: 0
   player: {fileID: 0}
-  triggerDis: 50
+  triggerDis: 65
   breakspeed: 20
   audioManager: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1 &8161451911067902268
 GameObject:
   m_ObjectHideFlags: 0

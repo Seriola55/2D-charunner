@@ -27,6 +27,10 @@ public class obstaclemove : MonoBehaviour
 
     public AudioManager audioManager;
 
+    public GameObject destroyEffect;
+
+    SpriteRenderer sr;
+
     Vector3 startPos;
     Rigidbody2D rb;
 
@@ -42,6 +46,7 @@ public class obstaclemove : MonoBehaviour
                 player = p.transform;
             }
         }
+        sr = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -106,7 +111,11 @@ public class obstaclemove : MonoBehaviour
                 {
                     if(audioManager != null)
                 {
-                    audioManager.PlayEnemyDefeat();
+                    audioManager.PlayEnemyDefeat();   //音
+                }
+                if(destroyEffect != null)
+                {
+                    Instantiate(destroyEffect,transform.position,Quaternion.identity);  //エフェクト
                 }
                     Destroy(gameObject);   //速度高いと倒せる
                 }
@@ -123,6 +132,10 @@ public class obstaclemove : MonoBehaviour
             || collision.gameObject.GetComponent<obstaclemove>() != null)     //enermy用
             {
                 direction *= -1;   //方向転換
+                if(sr != null)
+                {
+                    sr.flipX = !sr.flipX;
+                }
             }
             
         }

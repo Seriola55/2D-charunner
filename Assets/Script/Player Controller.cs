@@ -4,6 +4,8 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Collections;
+
 public class PlayerController : MonoBehaviour
 {
     Rigidbody2D rb;
@@ -51,12 +53,30 @@ public class PlayerController : MonoBehaviour
     public Slider chargeSlider;      //チャージスライダー
 
     public AudioManager audioManager;
-    bool playedGameOverSE =false;
+    public GameObject gameOverEffect;
+    bool playedGameOverEffect;
+
+    CameraFollow cameraFollow;
+
+    public float gameOverStopTime = 0.15f;
+    public float gameOverShakePower = 0.3f;
+    bool startedGameOverSequence = false;
+    SpriteRenderer playerSprite;
+
+    public Color normalColor = Color.white;
+    public Color maxChargeColor = Color.red;
+    public float minChargeScale = 0.9f;
+    public GameObject chargeReleaseEffect;
+
+    Vector3 normalSpriteScale;
 
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        cameraFollow = Camera.main.GetComponent<CameraFollow>();
+        playerSprite = GetComponentInChildren<SpriteRenderer>();
+        normalSpriteScale = playerSprite.transform.localScale;
     }
 
     void Update()
@@ -116,6 +136,18 @@ public class PlayerController : MonoBehaviour
             {
                 audioManager.StartChargeLoop();
             }
+            float chargeRate = charge / maxCharge;
+
+            if(playerSprite != null)
+            {
+                playerSprite.color = Color.Lerp(normalColor, maxChargeColor, chargeRate);
+            }
+
+            playerSprite.transform.localScale = Vector3.Lerp(
+            normalSpriteScale,
+            normalSpriteScale * minChargeScale,
+            chargeRate
+            );
         }
         
         if(Keyboard.current.spaceKey.wasReleasedThisFrame)   //離した時
@@ -133,7 +165,19 @@ public class PlayerController : MonoBehaviour
             {
                 audioManager.PlayChargeRelease();
             }
+            if(playerSprite != null)
+            {
+            playerSprite.color = normalColor;
+            }
+            playerSprite.transform.localScale = normalSpriteScale;
+
+            if(chargeReleaseEffect != null)
+            {
+                Instantiate(chargeReleaseEffect,transform.position,Quaternion.identity);
+            }
         }
+
+        
         if(speed>maxspeed)
         {
             speed *= boothtDe;   //マックス超えた時の減速
@@ -188,16 +232,11 @@ public class PlayerController : MonoBehaviour
             charge= 0f;
             rb.linearVelocity =Vector2.zero;   //ゲームオーバーかクリア時に速度停止
 
-            if (isGameOver && gameOverPanel != null)
+            if (isGameOver && !startedGameOverSequence)
             {
-                gameOverPanel.SetActive(true);
-                if(!playedGameOverSE && audioManager != null)
-                {
-                    audioManager.PlayGameOver();
-                    playedGameOverSE =true;
-                }
+                startedGameOverSequence = true;
+                StartCoroutine(GameOverSequence());
             }
-
 
             return;
         }
@@ -268,14 +307,49 @@ public class PlayerController : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     private void OnDrawGizmosSelected()    //グラウンドチェック可視化
-{
-    if (groundcheck == null) return;
+    {
+        if (groundcheck == null) return;
 
-    Gizmos.color = Color.red;
+        Gizmos.color = Color.red;
 
-    Gizmos.DrawWireCube(
-        groundcheck.position,
-        groundcheckSize
-    );
-}
+        Gizmos.DrawWireCube(
+            groundcheck.position,
+            groundcheckSize
+        );
+    }
+
+    IEnumerator GameOverSequence()
+    {
+        if(audioManager != null)
+        {
+            audioManager.StopChargeLoop();
+            audioManager.PlayGameOver();
+        }
+
+        if(cameraFollow != null)
+        {
+            cameraFollow.Shake(gameOverStopTime, gameOverShakePower);
+        }
+
+        Time.timeScale = 0f;
+
+        yield return new WaitForSecondsRealtime(gameOverStopTime);
+
+        Time.timeScale = 1f;
+
+        if(playerSprite != null)
+        {
+            playerSprite.enabled = false;
+        }
+
+        if(gameOverEffect != null)
+        {
+            Instantiate(gameOverEffect, transform.position, Quaternion.identity);
+        }
+
+        if(gameOverPanel != null)
+        {
+            gameOverPanel.SetActive(true);
+        }
+    }
 }

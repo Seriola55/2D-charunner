@@ -181,9 +181,10 @@ MonoBehaviour:
   height: 5
   waveOffset: 0
   player: {fileID: 0}
-  triggerDis: 45
+  triggerDis: 25
   breakspeed: 20
   audioManager: {fileID: 0}
+  destroyEffect: {fileID: 0}
 --- !u!1 &2994039980615643602
 GameObject:
   m_ObjectHideFlags: 0
@@ -332,6 +333,7 @@ MonoBehaviour:
   height: 5
   waveOffset: 0
   player: {fileID: 0}
-  triggerDis: 45
+  triggerDis: 25
   breakspeed: 20
   audioManager: {fileID: 0}
+  destroyEffect: {fileID: 0}
